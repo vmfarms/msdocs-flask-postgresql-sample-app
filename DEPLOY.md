@@ -14,4 +14,7 @@ export PYTHONPATH=/layers/heroku_python/dependencies/lib/python3.12/site-package
 export PATH=$PATH:/layers/heroku_python/dependencies/bin/
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/layers/heroku_python/python/lib/
 flask db upgrade
+exit
 ```
+
+epinio configuration show msdocs-db-psql-conn
