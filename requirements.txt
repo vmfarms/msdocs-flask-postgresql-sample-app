@@ -5,3 +5,19 @@ flask_wtf
 psycopg2
 python-dotenv
 SQLAlchemy
+
+# demo
+gunicorn==21.2.0
+packaging==24.0
+async-timeout==4.0.3
+mysql-connector-python==8.4.0
+pika==1.3.2
+pymongo==4.7.2
+redis==5.0.4
+boto3==1.34.113
+botocore==1.34.113
+jmespath==1.0.1
+python-dateutil==2.9.0.post0
+s3transfer==0.10.1
+six==1.16.0
+urllib3==1.26.18
