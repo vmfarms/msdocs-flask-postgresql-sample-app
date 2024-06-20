@@ -4,7 +4,8 @@ epinio app create msdocs \
     --env DBHOST='$(PSQL_HOSTNAME)' \
     --env DBUSER='$(PSQL_USERNAME)' \
     --env DBPASS='$(PSQL_PASSWORD)' \
-    --chart-value appListeningPort=5000
+    --chart-value appListeningPort=5000 \
+    --chart-value memory="512Mi"
 epinio service bind msdocs-db msdocs
 epinio app push -n msdocs --builder-image heroku/builder:22
 epinio app exec msdocs
