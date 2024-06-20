@@ -172,7 +172,7 @@ def ping():
 
     # mongo
     try:
-        mongo_uri = getenv("MONGODB_URI", "")
+        mongo_uri = getenv("MONGODB_URL", "")
         mongo_client = MongoClient(mongo_uri)
         mongo_result = mongo_client.server_info()
         if mongo_result:
