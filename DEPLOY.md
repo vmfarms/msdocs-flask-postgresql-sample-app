@@ -1,4 +1,8 @@
-epinio service create crossplane-postgresql-dev msdocs-db
+```bash
+# create the required database
+epinio service create postgresql-dev msdocs-db
+
+# create and configure the app
 epinio app create msdocs \
     --env DBNAME='$(PSQL_DB_NAME)' \
     --env DBHOST='$(PSQL_HOSTNAME)' \
@@ -6,16 +10,21 @@ epinio app create msdocs \
     --env DBPASS='$(PSQL_PASSWORD)' \
     --chart-value appListeningPort=5000 \
     --chart-value memory="512Mi"
-epinio service bind msdocs-db msdocs
-epinio app push -n msdocs --builder-image heroku/builder:22
-epinio app exec msdocs
 
-```bash
+# bind the database to the app
+epinio service bind msdocs-db msdocs
+
+# push and build the app
+epinio app push -n msdocs --builder-image heroku/builder:22
+
+# connect to the app and run database migration
+epinio app exec msdocs
 export PYTHONPATH=/layers/heroku_python/dependencies/lib/python3.12/site-packages/:$PYTHONPATH
 export PATH=$PATH:/layers/heroku_python/dependencies/bin/
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/layers/heroku_python/python/lib/
 flask db upgrade
 exit
-```
 
+# show database configuration
 epinio configuration show msdocs-db-psql-conn
+```
