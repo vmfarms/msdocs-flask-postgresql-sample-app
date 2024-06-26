@@ -1,9 +1,15 @@
 ```bash
+# push and build the app
+epinio app push -n msdocs --builder-image heroku/builder:22
+
+# take a look at the logs to understand why the app is not running properly
+epinio app logs msdocs                                     
+
 # create the required database
 epinio service create postgresql-dev msdocs-db
 
 # create and configure the app
-epinio app create msdocs \
+epinio app update msdocs \
     --env DBNAME='$(PSQL_DB_NAME)' \
     --env DBHOST='$(PSQL_HOSTNAME)' \
     --env DBUSER='$(PSQL_USERNAME)' \
@@ -13,9 +19,6 @@ epinio app create msdocs \
 
 # bind the database to the app
 epinio service bind msdocs-db msdocs
-
-# push and build the app
-epinio app push -n msdocs --builder-image heroku/builder:22
 
 # connect to the app and run database migration
 epinio app exec msdocs
