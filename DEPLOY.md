@@ -1,4 +1,7 @@
 ```bash
+# login
+sidepro login
+
 # push and build the app
 sidepro push --name msdocs
 
